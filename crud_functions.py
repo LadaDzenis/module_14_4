@@ -12,6 +12,9 @@ def initiate_db():
     price INTEGER NOT NULL 
     )
     ''')
+
+    cursor.execute("DELETE FROM Products")
+
     for i in range(1, 5):
         cursor.execute("INSERT INTO Products (title, description, price) VALUES (?, ?, ?)",
                            (f"Продукт {i}", f"Описание {i}", f"{i * 100}"))
@@ -29,3 +32,5 @@ def get_all_products():
     connection.commit()
     connection.close()
     return list(db)
+
+initiate_db()
